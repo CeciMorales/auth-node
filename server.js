@@ -2,9 +2,18 @@ let express = require('express');
 let app = express();
 let webRoutes = require('./routes/web');
 
+// nuevo
+let cookieParser = require('cookie-parser');
+let session = require('express-session');
+let flash = require('express-flash');
+let sessionStore = new session.MemoryStore;
+let passport = require('passport');
+
 /**
  * Configurations
  */
+
+
 
 let appConfig = require('./configs/app');
 
@@ -21,6 +30,27 @@ let hbs = exphbs.create({
 });
 app.engine(extNameHbs, hbs.engine);
 app.set('view engine', extNameHbs);
+
+app.use(express.urlencoded({extended:true}));
+
+// sesiones
+app.use(cookieParser());
+app.use(session({
+  cookie: { maxAge: 60000 },
+  store: sessionStore,
+  saveUninitialized: true,
+  resave: 'true',
+  secret: appConfig.secret
+}));
+app.use(flash());
+
+ // passport
+// Configuraciones de passport
+require('./configs/passport');
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 /**
  * Routes
