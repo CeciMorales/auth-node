@@ -34,3 +34,18 @@ exports.store = (req, res) => {
       console.log(error);
     });
 }
+
+exports.dashboard = (req, res) => {
+  res.render('dashboard');
+}
+
+
+exports.showUsers = (req, res) => {
+  UserModel.showAll()
+    .then((data) => {
+      let users = data;
+      console.log(users);
+      res.render('showUsers', { users  :users });
+    })
+
+}

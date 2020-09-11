@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="mx-auto mt-4 mb-4" style="width: 270px;">
+    <h2>Lista de usuarios</h2>
+  </div>
+
+  <div class="mx-auto" style="width:290px;">
+    {{#each users}}
+      <div class="card bg-light mb-3" style="max-width: 18rem;">
+        <div class="card-header">ID: {{id}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{role}}: {{name}}</h5>
+          <p class="card-text">e-mail: {{email}}</p>
+        </div>
+      </div>
+
+    {{/each}}
+  </div>
+
+</body>
+</html>

@@ -34,5 +34,12 @@ exports.create = (user) => {
   return knex('users')
     .insert({name:user.name,
             email:user.email,
-            password: pass})
+            password: pass,
+            role: user.role})
+}
+
+exports.showAll = () => {
+  return knex
+    .select('*')
+    .from('users')
 }
